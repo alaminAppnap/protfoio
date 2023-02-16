@@ -1,0 +1,22 @@
+name: Deploy my protfolio application on dev server
+
+on:
+  push:
+    branches:
+      - v1.x
+
+jobs:
+  build:
+    name: Dev deployment process
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/iamalamin/protfolio
+            git pull origin v1.x
