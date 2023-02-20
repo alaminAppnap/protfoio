@@ -2,8 +2,8 @@ name: Deploy my protfolio application on Production server
 
 on:
   create:
-  tags:
-    - "v[0-9]+.[0-9]+.[0-9]+"
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   any_name:
