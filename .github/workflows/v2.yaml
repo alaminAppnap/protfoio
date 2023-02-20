@@ -1,0 +1,17 @@
+name: Deploy my protfolio application on v2.x server
+
+on:
+  push:
+    branches:
+      - v2.x
+
+jobs:
+  any_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Any Name Bash Test Step
+        shell: bash
+        run: |
+          echo "GH_REPO"
+          echo "GH_REPO_O"
+          echo "GH_T"
