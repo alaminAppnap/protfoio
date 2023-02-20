@@ -9,9 +9,7 @@ jobs:
   any_name:
     runs-on: ubuntu-latest
     steps:
-      - name: Any Name Bash Test Step
+      - name: Deploy on staging
         shell: bash
         run: |
-          echo "GH_REPO"
-          echo "GH_REPO_O"
-          echo "GH_T"
+          echo "Successfully deploy on staging"
