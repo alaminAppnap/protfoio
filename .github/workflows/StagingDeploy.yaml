@@ -16,4 +16,5 @@ jobs:
           steps:
           echo "event name is:" ${{ github.event_name }} 
           echo "event type is:" ${{ github.event.action }}
-          echo "branch: " ${{GITHUB_REF}}
+          echo "branch: " ${{github.ref}}
+          echo "branch name: " ${{github.ref_name}}
