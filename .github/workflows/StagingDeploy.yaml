@@ -3,7 +3,7 @@ name: Deploy my protfolio application on Staging Server
 on:
   push:
     tags:
-      - "v[0-100]+.[0-100]+.[0-100]+-RC.[0-100]"
+      - "v\d+.\d+.\d+-RC.\d"
 
 jobs:
   any_name:
