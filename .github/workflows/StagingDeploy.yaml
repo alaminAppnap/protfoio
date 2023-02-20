@@ -8,12 +8,15 @@ on:
 jobs:
   any_name:
     runs-on: ubuntu-latest
-    steps:
-      - name: Deploy on staging
-        shell: bash
-        run: |
-          echo "Successfully deploy on staging"
-          echo "event name is:" ${{ github.event_name }} 
-          echo "event type is:" ${{ github.event.action }}
-          echo "branch: " ${{github.ref}}
-          echo "branch name: " ${{github.ref_name}}
+   steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/iamalamin/protfolio
+            git fetch --all
+            git checkout ${{github.ref_name}}
