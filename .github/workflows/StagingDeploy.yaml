@@ -13,7 +13,6 @@ jobs:
         shell: bash
         run: |
           echo "Successfully deploy on staging"
-          steps:
           echo "event name is:" ${{ github.event_name }} 
           echo "event type is:" ${{ github.event.action }}
           echo "branch: " ${{github.ref}}
