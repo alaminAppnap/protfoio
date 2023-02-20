@@ -16,4 +16,4 @@ jobs:
           steps:
           echo "event name is:" ${{ github.event_name }} 
           echo "event type is:" ${{ github.event.action }}
-          echo "${{GITHUB_REF}} and ${{GITHUB_REF_NAME}}"
+          e
