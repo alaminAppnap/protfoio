@@ -3,7 +3,7 @@ name: Deploy my protfolio application on Staging Server
 on:
   push:
     tags:
-      - "v*+.*+.*+-RC.*"
+      - "v*.*.*-RC.*"
 
 jobs:
   any_name:
