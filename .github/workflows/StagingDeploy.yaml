@@ -6,9 +6,10 @@ on:
       - "v*.*.*-RC.*"
 
 jobs:
-  any_name:
+  build:
+    name: Dev deployment process
     runs-on: ubuntu-latest
-   steps:
+    steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
