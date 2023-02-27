@@ -1,23 +1,26 @@
-name: sample-add-to-q
+name: sample_update_queue
 
 on:
-  push:
-    branches:
-      - v1.x
+  pull_request:
+    types: [closed]
 
 jobs:
-  add_to_queue:
+  update_q_on_close:
     env:
       SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     runs-on: ubuntu-latest
-    name: Add PR to queue a
+    name: Update Queue
     steps:
-      - name: Add PR to queue
+      - name: Update queue
         uses: lwhiteley/slack-merge-queue@{version}
-        id: add_to_q
+        id: update_q_on_close
         with:
-          mode: 'INIT'
+          mode: 'MERGE'
           channel: 'merge-queue'
-          init_trigger: '/merging'
-      # Use the output from the `add_to_q` step
-      - name: Get the output d
+          merge_ready_message: 'Last PR closed. This PR is now up for merge!'
+          # delete_on_cancel: 'true' # uncomment if you want to delete cancelled prs from queue
+      # Use the output from the `update_q_on_close` step
+      - name: Get the output status
+        run: echo "status => ${{ steps.update_q_on_close.outputs.status }}"
+      - name: Get the next PR number
+        run: echo "next pr => ${{ steps.update_q_on_close.outputs.next_pr }}"
