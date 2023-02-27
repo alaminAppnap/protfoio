@@ -10,7 +10,7 @@ jobs:
     env:
       SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     runs-on: ubuntu-latest
-    name: Add PR to queue
+    name: Add PR to queue a
     steps:
       - name: Add PR to queue
         uses: lwhiteley/slack-merge-queue@{version}
