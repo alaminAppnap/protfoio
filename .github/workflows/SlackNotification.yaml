@@ -20,7 +20,7 @@ jobs:
           merge_ready_message: 'Last PR closed. This PR is now up for merge!'
           # delete_on_cancel: 'true' # uncomment if you want to delete cancelled prs from queue
       # Use the output from the `update_q_on_close` step
-      - name: Get the output status
+      - name: Get the output status d
         run: echo "status => ${{ steps.update_q_on_close.outputs.status }}"
       - name: Get the next PR number
         run: echo "next pr => ${{ steps.update_q_on_close.outputs.next_pr }}"
