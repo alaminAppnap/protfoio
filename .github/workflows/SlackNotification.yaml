@@ -12,7 +12,7 @@ jobs:
     name: Update Queue
     steps:
       - name: Update queue
-        uses: lwhiteley/slack-merge-queue
+        uses: lwhiteley/slack-merge-queue@{version}
         id: update_q_on_close
         with:
           mode: 'MERGE'
