@@ -21,6 +21,8 @@ jobs:
             source ~/.bashrc
             nvm list-remote
             nvm install v16.14.2
+            nvm install lts/fermium
+            echo node -v
             npm install
             npm run build
 
