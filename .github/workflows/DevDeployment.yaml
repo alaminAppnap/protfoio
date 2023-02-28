@@ -11,20 +11,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Use Node.js
+      - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          script: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-            source ~/.bashrc
-            nvm list-remote
-            nvm install v16.14.2
-            nvm install lts/fermium
-            echo node -v
-            npm install
-            npm run build
+          node-version: "14.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test
+        run: npm test
+      # - name: Use Node.js v16.14.2
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: v16.14.2
+      #     script: |
+      #       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+      #       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      #       source ~/.bashrc
+      #       nvm list-remote
+      #       nvm install v16.14.2
+      #       nvm install lts/fermium
+      #       echo node -v
+      #       npm install
+      #       npm run build
 
   deploy:
     needs: build
