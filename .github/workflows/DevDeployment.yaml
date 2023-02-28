@@ -13,14 +13,14 @@ jobs:
       uses: actions/checkout@v2
       name: Use Node.js
       uses: actions/setup-node@v1
-        with:
-          node-version: "16.4.0"
-          name: npm  install
-            - run: npm install
-          name: Npm run bild
-            - run: npm run build --if-present
-          name: Npm test
-            - run: npm test
+      with:
+        node-version: "16.4.0"
+        name: npm  install
+          - run: npm install
+        name: Npm run bild
+          - run: npm run build --if-present
+        name: Npm test
+          - run: npm test
 
   deploy:
     needs: build
