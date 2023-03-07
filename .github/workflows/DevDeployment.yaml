@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
@@ -20,11 +21,23 @@ jobs:
             npm install
             npm run build
 
-  deploy:
-    needs: build
-    name: Dev deployment process
-    runs-on: ubuntu-latest
-    steps:
+      - name: Build file copy to server
+        if: ${{ success() }}
+        env:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$key" >> ~/.ssh/id_rsa_alamin
+          chmod 600 ~/.ssh/id_rsa_alamin
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_rsa_alamin
+          ssh-keyscan -H $host >> ~/.ssh/known_hosts
+          ssh $username@$host "cd /var/www/iamalamin/protfolio/; rm -r .githubbd;"
+          scp -r .github $username@$host:/var/www/iamalamin/protfolio/.githubbd/
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
