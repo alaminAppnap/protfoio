@@ -15,9 +15,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.4.2"
+        env:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+
         script: |
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
+          echo "$host" >> .env.local
           npm install
           npm run build
 
