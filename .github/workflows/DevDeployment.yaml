@@ -27,6 +27,7 @@ jobs:
       - run: source ~/.nvm/nvm.sh
       - run: cp .env.local .env
       - run: echo "$key" >> .env
+      - run: cat .env
 
 #      - name: Build file copy to server
 #        if: ${{ success() }}
