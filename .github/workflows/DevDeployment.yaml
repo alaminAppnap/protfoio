@@ -15,11 +15,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16.4.2"
-          script: |
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
-            npm install
-            npm run build
+        env:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+
+        script: |
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          echo "$host" >> .env.local
+          npm install
+          npm run build
 
       - name: Build file copy to server
         if: ${{ success() }}
@@ -33,6 +40,7 @@ jobs:
           echo "$key" >> ~/.ssh/id_rsa_alamin
           chmod 600 ~/.ssh/id_rsa_alamin
           eval "$(ssh-agent -s)"
+
           ssh-add ~/.ssh/id_rsa_alamin
           ssh-keyscan -H $host >> ~/.ssh/known_hosts
           ssh $username@$host "cd /var/www/iamalamin/protfolio/; rm -r githubbd;"
