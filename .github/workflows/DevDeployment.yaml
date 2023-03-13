@@ -20,6 +20,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+        run: |
+          echo $host .
       - run: npm i -g npm@8.5.0
       - run: node -v
       - run: npm -v
