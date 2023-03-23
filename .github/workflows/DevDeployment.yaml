@@ -9,51 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js 16.14.2
-        uses: actions/setup-node@v3
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         with:
-          node-version: 16.14.2
-        env:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-      - run: npm i -g npm@8.5.0
-      - run: node -v
-      - run: npm -v
-      - run: export NVM_DIR=~/.nvm
-      - run: source ~/.nvm/nvm.sh
-      - run: cp .env.local .env
-      - run: echo $host >> .env
-      - run: cat .env
-
-#      - name: Build file copy to server
-#        if: ${{ success() }}
-#        env:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
-#          key: ${{ secrets.KEY }}
-#          port: ${{ secrets.PORT }}
-#        run: |
-#          mkdir -p ~/.ssh
-#          echo "$key" >> ~/.ssh/id_rsa_alamin
-#          chmod 600 ~/.ssh/id_rsa_alamin
-#          eval "$(ssh-agent -s)"
-#
-#          ssh-add ~/.ssh/id_rsa_alamin
-#          ssh-keyscan -H $host >> ~/.ssh/known_hosts
-#          ssh $username@$host "cd /var/www/iamalamin/protfolio/; rm -r githubbd;"
-#          scp -r .github $username@$host:/var/www/iamalamin/protfolio/githubbd/
-#
-#      - name: executing remote ssh commands using password
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.USERNAME }}
-#          key: ${{ secrets.KEY }}
-#          port: ${{ secrets.PORT }}
-#          script: |
-#            cd /var/www/iamalamin/protfolio
-#            git pull origin v1.x
+          script: |
+            cd /var/www/iamalamin/protfolio
+            git pull origin v1.x
