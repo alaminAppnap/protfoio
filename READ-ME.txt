@@ -1,4 +1,4 @@
-  =>  Template Name    : Bloggy - Personal Blog Template
+  =>  Template Name    : Bloggy - Personal Blog Template .
 
   =>  Template Link    : https://htmlcodex.com/personal-blog-template
 
