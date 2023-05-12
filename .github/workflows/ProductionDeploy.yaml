@@ -1,4 +1,4 @@
-name: Deploy my protfolio application on Production server
+name: Deploy my protfolio application on production server
 
 on:
   push:
