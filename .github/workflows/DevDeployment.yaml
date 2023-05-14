@@ -18,5 +18,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/www/iamalamin/protfolio
-            sudo su
             git pull origin v1.x
