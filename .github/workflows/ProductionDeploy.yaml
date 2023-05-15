@@ -8,7 +8,7 @@ jobs:
   any_name:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy on production dd
+      - name: Deploy on production dd d
         shell: bash
         run: |
           echo "Successfully deploy on production"
