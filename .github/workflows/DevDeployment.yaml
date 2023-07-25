@@ -22,8 +22,8 @@ jobs:
             
   build-on-github-server:
     runs-on: ubuntu-latest
-    needs: self-hosted-build
-    if: ${{ needs.self-hosted-build.result != 'success' }}
+    needs: build-on-self-server
+    if: ${{ needs.build-on-self-server.result != 'success' }}
     steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
