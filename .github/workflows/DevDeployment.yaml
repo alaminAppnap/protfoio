@@ -6,7 +6,7 @@ on:
       - v1.x
 
 jobs:
-  self-hosted-build:
+  build-on-self-server:
     runs-on: self-hosted
     steps:
       - name: executing remote ssh commands using password
