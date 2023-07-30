@@ -1,4 +1,42 @@
-name: Deploy my protfolio application on dev server
+# name: Deploy my protfolio application on dev server
+
+# on:
+#   push:
+#     branches:
+#       - v1.x
+
+# jobs:
+#   build-on-self-server:
+#     runs-on: self-hosted
+#     steps:
+#       - name: executing remote ssh commands using password
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.HOST }}
+#           username: ${{ secrets.USERNAME }}
+#           key: ${{ secrets.KEY }}
+#           port: ${{ secrets.PORT }}
+#           script: |
+#             cd /var/www/iamalamin/protfolio
+#             git pull origin v1.x
+            
+#   build-on-github-server:
+#     runs-on: ubuntu-latest
+#     needs: build-on-self-server
+#     if: ${{ needs.build-on-self-server.result != 'success' }}
+#     steps:
+#       - name: executing remote ssh commands using password
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ secrets.HOST }}
+#           username: ${{ secrets.USERNAME }}
+#           key: ${{ secrets.KEY }}
+#           port: ${{ secrets.PORT }}
+#           script: |
+#             cd /var/www/iamalamin/protfolio
+#             git pull origin v1.x
+
+name: Deploy my portfolio application on dev server
 
 on:
   push:
@@ -19,12 +57,28 @@ jobs:
           script: |
             cd /var/www/iamalamin/protfolio
             git pull origin v1.x
-            
+
   build-on-github-server:
     runs-on: ubuntu-latest
     needs: build-on-self-server
     if: ${{ needs.build-on-self-server.result != 'success' }}
     steps:
+      - name: Wait for Self-Hosted Runner (20 seconds)
+        run: sleep 20
+
+      - name: Check Self-Hosted Runner Response
+        run: |
+          # Replace the following command with a command that checks the runner's responsiveness.
+          # For example, you can use "curl", "wget", or any other suitable command.
+          # If the command returns successfully, the runner is responsive. Otherwise, it's not.
+          if curl --max-time 10 http://localhost:8080; then
+            echo "Self-Hosted Runner is responsive"
+            exit 0  # Success
+          else
+            echo "Self-Hosted Runner is not responsive"
+            exit 1  # Failure
+          fi
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
