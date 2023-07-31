@@ -17,7 +17,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /var/www/iamalamin/protfolio
+            cd /var/www/protfolio
             git pull origin v1.x
             
   build-on-github-server:
