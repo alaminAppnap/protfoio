@@ -19,19 +19,3 @@ jobs:
           script: |
             cd /var/www/protfolio
             git pull origin v1.x
-            
-  build-on-github-server:
-    runs-on: ubuntu-latest
-    needs: build-on-self-server
-    if: ${{ needs.build-on-self-server.result != 'success' }}
-    steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd /var/www/iamalamin/protfolio
-            git pull origin v1.x
