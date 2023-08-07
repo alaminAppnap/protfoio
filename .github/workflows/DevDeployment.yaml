@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-on-self-server:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
