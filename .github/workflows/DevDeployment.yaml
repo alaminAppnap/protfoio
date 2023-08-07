@@ -18,5 +18,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/www/protfolio
-            mkdir /var/www/test
             git pull origin v1.x
