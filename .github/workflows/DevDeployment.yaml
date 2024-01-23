@@ -18,4 +18,5 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/www/iamalamin
-            git pull origin v1.x
+            touch abc.txt
+            # git pull origin v1.x
