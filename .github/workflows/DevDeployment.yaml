@@ -19,4 +19,4 @@ jobs:
           script: |
             cd /var/www/iamalamin
             touch abc.txt
-            # git pull origin v1.x
+            git pull origin v1.x
